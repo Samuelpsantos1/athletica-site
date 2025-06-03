@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Athletica Sem Crise</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Athletica Sem Crise</h1>
+      <p>Melhore seu condicionamento físico com acompanhamento profissional</p>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Treinos Personalizados</h2>
+        <p>Programas adaptados ao seu nível de condicionamento físico para garantir evolução contínua.</p>
+      </div>
+      <div class="card">
+        <h2>Acompanhamento Profissional</h2>
+        <p>Instrutores qualificados para orientar, corrigir posturas e acompanhar sua evolução.</p>
+      </div>
+      <div class="card">
+        <h2>Ambiente Motivador</h2>
+        <p>Espaço dedicado à superação, com foco em saúde, disciplina e bem-estar.</p>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Fale com a gente</h2>
+      <p>Deixe seus dados e como deseja ser contatado para receber uma avaliação gratuita!</p>
+      <form id="contact-form" class="form">
+        <input type="text" id="name" placeholder="Seu nome" required />
+        <input type="email" id="email" placeholder="Seu e-mail" required />
+        <input type="text" id="preferencia" placeholder="Telefone, WhatsApp ou E-mail?" required />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <footer class="footer">
+      © <span id="year"></span> Athletica Sem Crise. Todos os direitos reservados.
+    </footer>
+  </div>
+
+  
+  <div class="chatbot">
+    <div id="chatbot-messages" class="chat-window"></div>
+    <form id="chatbot-form" class="chat-input-area">
+      <input type="text" id="chatbot-input" placeholder="Digite sua dúvida..." />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
