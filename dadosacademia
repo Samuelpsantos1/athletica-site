@@ -1,0 +1,91 @@
+CREATE TABLE Planos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    duracao_meses INT NOT NULL
+);
+CREATE TABLE Areas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL
+);
+CREATE TABLE Funcionarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    cargo VARCHAR(50) NOT NULL,
+    salario DECIMAL(10,2),
+    telefone VARCHAR(20)
+);
+CREATE TABLE Membros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) UNIQUE NOT NULL,
+    id_plano INT,
+    FOREIGN KEY (id_plano) REFERENCES Planos(id)
+);
+CREATE TABLE Equipamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50),
+    id_area INT,
+    FOREIGN KEY (id_area) REFERENCES Areas(id)
+);
+CREATE TABLE Aulas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    id_instrutor INT,
+    horario TIME NOT NULL,
+    dia_semana VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_instrutor) REFERENCES Funcionarios(id)
+);
+CREATE TABLE Inscricoes_Aulas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_membro INT NOT NULL,
+    id_aula INT NOT NULL,
+    FOREIGN KEY (id_membro) REFERENCES Membros(id),
+    FOREIGN KEY (id_aula) REFERENCES Aulas(id),
+    UNIQUE (id_membro, id_aula)
+);
+CREATE TABLE Pagamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_membro INT NOT NULL,
+    id_plano INT NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data_pagamento DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (id_membro) REFERENCES Membros(id),
+    FOREIGN KEY (id_plano) REFERENCES Planos(id)
+);
+
+INSERT INTO Planos (nome, valor, duracao_meses) VALUES
+('Mensal', 100.00, 1),
+('Trimestral', 270.00, 3),
+('Anual', 900.00, 12);
+
+INSERT INTO Areas (nome) VALUES
+('Musculação'),
+('Cardio'),
+('Aulas Coletivas');
+
+INSERT INTO Funcionarios (nome, cargo, salario, telefone) VALUES
+('João Silva', 'Instrutor', 2500.00, '11944520000'),
+('Maria Oliveira', 'Recepcionista', 1800.00, '11944530000');
+
+INSERT INTO Membros (nome, telefone, id_plano) VALUES
+('Pedro Santos', '11954472500', 1),
+('Ana Costa', '11954472600', 2);
+
+INSERT INTO Equipamentos (nome, tipo, id_area) VALUES
+('Esteira', 'Cardio', 2),
+('Supino Reto', 'Força', 1),
+('Bicicleta Ergométrica', 'Cardio', 2);
+
+INSERT INTO Aulas (nome, id_instrutor, horario, dia_semana) VALUES
+('Funcional', 1, '08:00:00', 'Segunda-feira'),
+('Spinning', 1, '19:00:00', 'Quarta-feira');
+
+INSERT INTO Inscricoes_Aulas (id_membro, id_aula) VALUES
+(1, 1),
+(2, 2);
+
+INSERT INTO Pagamentos (id_membro, id_plano, valor) VALUES
+(1, 1, 100.00),
+(2, 2, 270.00);
